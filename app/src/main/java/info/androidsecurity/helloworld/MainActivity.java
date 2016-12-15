@@ -12,12 +12,22 @@ public class MainActivity extends AppCompatActivity {
     private static final String GOOGLE_PLAY = "com.android.vending";
     private static final String AMAZON_STORE = "com.android.vending";
 
+    static {
+        System.loadLibrary("native-lib");
+    }
+
+    private native String invokeNativeFunction();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         Context mContext = getApplicationContext();
+
+        // Some super API call using that key
+        Log.i(TAG, "key: " + invokeNativeFunction());
+
 
 //        if(mContext.getPackageName().compareTo(PACKAGE_NAME) != 0){
 //            Log.d(TAG, "this is a hack");
